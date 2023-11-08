@@ -29,6 +29,33 @@ class CalculatorTest {
         calculator = null;
     }
 
+//    Домашнее задание
+//    проверить метод calculateDiscount с использованием библиотеки AssertJ.
+//    Если метод calculateDiscount получает недопустимые аргументы,
+//    он должен выбрасывать исключение ArithmeticException
+
+    @Test
+    @DisplayName("Проверка вычисления суммы со скидкой")
+    void testCalculateDiscountedAmount() {
+        assertEquals(180, calculator.calculateDiscount(200, 10));
+    }
+
+    @Test
+    @DisplayName("Проверка процента скидки на допустимое значение")
+    void testPermissibleValue() {
+        assertThrows(IllegalArgumentException.class, () -> calculator.calculateDiscount(200, 188));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {10, 20, 70, 85})
+    @DisplayName("Параметризованный тест для скидок: 10, 20, 70, 85")
+    void testMultiplyWithParametersDiscounts(int arg) {
+        assertEquals(100-arg, calculator.calculateDiscount(100, arg));
+    }
+
+
+//Seminar
+
     @Test
     @DisplayName("Проверка суммирования")
     void testAdd() {
